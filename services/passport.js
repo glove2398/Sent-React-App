@@ -29,10 +29,16 @@ passport.use(
         // already have a user with given profile id
         return done(null, existingUser);
       }
-      
+
       // we dont have a user with this id, so make a new one
       const user = await new User({ googleId: profile.id }).save()
       done(null, user);
     }
   )
 );
+
+/*app.get('/auth',passport.authenticate('google',{
+  scope:['profile','email']
+}));
+app.get('/auth/google/callback',
+  passport.authenticate('google'));*/
